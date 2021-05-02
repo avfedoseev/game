@@ -1,30 +1,45 @@
 package com.game.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "player")
 public class Player {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String title;
-    private Race race;
-    private Profession profession;
+    private @Enumerated(EnumType.STRING) Race race;
+    private @Enumerated(EnumType.STRING) Profession profession;
     private Integer experience;
     private Integer level;
     private Integer untilNextLevel;
     private Date birthday;
     private Boolean banned;
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":" + id +
+                ",\n \"name\":" + name +
+                ",\n \"title\":" + title +
+                ",\n \"race\":" + race +
+                ",\n \"profession\":" + profession +
+                ",\n \"experience\":" + experience +
+                ",\n \"level\":" + level +
+                ",\n \"untilNextLevel\":" + untilNextLevel +
+                ",\n \"birthday\":" + birthday +
+                ",\n \"banned\":" + banned +
+                '}';
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
