@@ -8,7 +8,7 @@ import java.util.Date;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String title;
@@ -19,6 +19,27 @@ public class Player {
     private Integer untilNextLevel;
     private Date birthday;
     private Boolean banned;
+
+    public Player() {
+    }
+
+    public Player(
+            String name,
+            String title,
+            Race race,
+            Profession profession,
+            Integer experience,
+            Date birthday,
+            Boolean banned
+    ) {
+        this.name = name;
+        this.title = title;
+        this.race = race;
+        this.profession = profession;
+        this.experience = experience;
+        this.birthday = birthday;
+        this.banned = banned;
+    }
 
     @Override
     public String toString() {
@@ -108,7 +129,7 @@ public class Player {
         this.birthday = birthday;
     }
 
-    public Boolean getBanned() {
+    public Boolean isBanned() {
         return banned;
     }
 
