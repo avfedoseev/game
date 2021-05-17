@@ -44,7 +44,7 @@ public class PlayerController {
         if (pageNumber == null) pageNumber = 0;
         if (pageSize == null) pageSize = 3;
 
-        PlayerRequest request = new PlayerRequest(
+        RequestFilterParams request = new RequestFilterParams(
                 name,
                 title,
                 race,
@@ -77,7 +77,7 @@ public class PlayerController {
             @RequestParam(required = false, value = "minLevel") Integer minLevel,
             @RequestParam(required = false, value = "maxLevel") Integer maxLevel
     ) {
-        return dataService.getPlayersCount(new PlayerRequest(
+        return dataService.getPlayersCount(new RequestFilterParams(
                 name,
                 title,
                 race,

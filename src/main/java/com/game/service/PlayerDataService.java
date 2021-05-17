@@ -1,7 +1,7 @@
 package com.game.service;
 
 import com.game.controller.PlayerOrder;
-import com.game.controller.PlayerRequest;
+import com.game.controller.RequestFilterParams;
 import com.game.controller.exceptions.BadRequestException;
 import com.game.entity.Player;
 import com.game.repository.PlayerRepository;
@@ -24,8 +24,8 @@ public class PlayerDataService {
         this.playerRepository = playerRepository;
     }
 
-    public List<Player> getPlayersList(PlayerRequest request, PlayerOrder order, int pageNumber, int pageSize) {
-        if (request.isEmpty()) {
+    public List<Player> getPlayersList(RequestFilterParams request, PlayerOrder order, int pageNumber, int pageSize) {
+        if (request.notEmpty()) {
             return  playerRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(order.getFieldName()))).getContent();
         }
         return playerRepository.findAll(
@@ -38,8 +38,8 @@ public class PlayerDataService {
         return playerRepository.findById(id).orElse(null);
     }
 
-    public int getPlayersCount(PlayerRequest request) {
-        if (request.isEmpty()) {
+    public int getPlayersCount(RequestFilterParams request) {
+        if (request.notEmpty()) {
             return (int) playerRepository.count();
         }
         return  (int) playerRepository.count(SpecificationBuilder.getSpecification(request));

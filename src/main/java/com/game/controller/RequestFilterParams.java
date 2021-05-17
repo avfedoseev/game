@@ -3,7 +3,7 @@ package com.game.controller;
 import com.game.entity.Profession;
 import com.game.entity.Race;
 
-public class PlayerRequest {
+public class RequestFilterParams {
     private final String name;
     private final String title;
     private final Race race;
@@ -16,9 +16,7 @@ public class PlayerRequest {
     private final Integer minLevel;
     private final Integer maxLevel;
 
-    private boolean isEmpty = true;
-
-    public PlayerRequest(
+    public RequestFilterParams(
             String name,
             String title,
             Race race,
@@ -42,25 +40,20 @@ public class PlayerRequest {
         this.minLevel = minLevel;
         this.maxExperience = maxExperience;
         this.maxLevel = maxLevel;
-
-        if (
-                name != null
-                || title != null
-                || race != null
-                || profession != null
-                || after != null
-                || before != null
-                || banned != null
-                || minExperience != null
-                || maxExperience != null
-                || minLevel != null
-                || maxLevel != null
-        )
-            isEmpty = false;
     }
 
-    public boolean isEmpty() {
-        return isEmpty;
+    public boolean notEmpty() {
+        return name != null
+                && title != null
+                && race != null
+                && profession != null
+                && after != null
+                && before != null
+                && banned != null
+                && minExperience != null
+                && maxExperience != null
+                && minLevel != null
+                && maxLevel != null;
     }
 
     public String getName() {

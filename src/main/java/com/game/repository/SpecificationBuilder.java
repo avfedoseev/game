@@ -1,6 +1,6 @@
 package com.game.repository;
 
-import com.game.controller.PlayerRequest;
+import com.game.controller.RequestFilterParams;
 import com.game.entity.Player;
 import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.Predicate;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class SpecificationBuilder {
-    public static Specification<Player> getSpecification(PlayerRequest request){
+    public static Specification<Player> getSpecification(RequestFilterParams request){
         return (root, query, builder) -> {
             List<Predicate> predicateList = new ArrayList<>();
 
